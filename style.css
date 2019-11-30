@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+*::selection {
+    background-color: #103A5D;
+}
+
+body {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.button {
+    order: 1;
+    margin: 1rem;
+    padding: .5rem 1rem;
+    border: 1px solid #000;
+    text-align: center;
+    cursor: pointer;
+    border-radius: .5rem;
+    font-size: 1.1rem;
+}
+
+.button:hover {
+    background-color: #eee;
+}
+
+.button:active {
+    background-color: #103A5D;
+}
+
+.container {
+    padding: 1rem;
+}

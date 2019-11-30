@@ -1,10 +1,10 @@
 class GridItem {
-    constructor(x, y, i, j, length) {
-        this.canvasX = x;
-        this.canvasY = y;
+    constructor(i, j, length, img, isEmpty) {
         this.i = i;
         this.j = j;
         this.length = length;
+        this.img = img;
+        this.isEmpty = isEmpty;
     }
 
     show() {
@@ -12,7 +12,15 @@ class GridItem {
         fill(255);
         stroke(0);
         strokeWeight(0.3);
-        rect(this.canvasX+1, this.canvasY+1, this.length-2, this.length-2);
+        rect(this.i*this.length+1, this.j*this.length+1, this.length-2, this.length-2);
+        if (!this.isEmpty) {
+            image(this.img, this.i*this.length+1, this.j*this.length+1);
+        }
         pop();
+    }
+
+    setImg(newImg) {
+        this.isEmpty = !this.isEmpty;
+        this.img = newImg;
     }
 }
