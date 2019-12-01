@@ -19,8 +19,8 @@ class GridItem {
         pop();
     }
 
-    setImg(newImg) {
-        this.isEmpty = !this.isEmpty;
-        this.img = newImg;
+    setCoords(i, j) {
+        this.i = i;
+        this.j = j;
     }
 }

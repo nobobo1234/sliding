@@ -14,15 +14,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 1rem;
 }
 
 .button {
     order: 1;
-    margin: 1rem;
     padding: .5rem 1rem;
     border: 1px solid #000;
     text-align: center;
-    cursor: pointer;
     border-radius: .5rem;
     font-size: 1.1rem;
 }
@@ -31,10 +30,18 @@ body {
     background-color: #eee;
 }
 
-.button:active {
-    background-color: #103A5D;
+.button:disabled {
+    cursor: not-allowed;
 }
 
 .container {
-    padding: 1rem;
+    margin-bottom: .5rem;
+}
+
+.seconds {
+    font-size: 1.2rem;
+}
+
+.timer-text {
+    margin: .5rem 0;
 }

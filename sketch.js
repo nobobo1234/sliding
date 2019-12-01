@@ -1,4 +1,6 @@
 const gridItems = [];
+let seconds = 0;
+let gameIsGoing = false;
 let img;
 const dimension = 4;
 const imageParts = [];
@@ -53,18 +55,38 @@ function draw() {
             gridItems[i][j].show();
         }
     }
+
+    if(gameIsGoing) {
+        if (frameCount % 60 === 0) {
+            const timer = document.querySelector('.seconds');
+            seconds += 1;
+            timer.innerHTML = seconds;
+        }
+
+        const won = checkIfWon();
+        if (won) {
+            const button = document.querySelector('.button');
+            button.removeAttribute('disabled');
+            gameIsGoing = false;
+        }
+    }
 }
 
 function checkIfWon() {
     for (let i = 0; i < dimension; i++) {
         for (let j = 0; j < dimension; j++) {
             const gridItem = gridItems[i][j];
-            if (gridItem.i !== gridItem.actualI || gridItem.j !== gridItem.actualJ) {
+            if (gridItem.i !== i || gridItem.j !== j) {
                 return false
             }
         }
     }
     return true;
+}
+
+function findGridItem(i, j) {
+    const flatGridItems = gridItems.reduce((prev, curr) => prev.concat(curr));
+    return flatGridItems.find(e => e.i === i && e.j === j);
 }
 
 function mousePressed() {
@@ -77,10 +99,12 @@ function mousePressed() {
             const absoluteI = i + deltaI;
             const absoluteJ = j + deltaJ;
             if (absoluteI >= 0 && absoluteI < dimension && absoluteJ >= 0 && absoluteJ < dimension) {
-                if (gridItems[absoluteI][absoluteJ].isEmpty) {
-                    const newImg = gridItems[i][j].img;
-                    gridItems[absoluteI][absoluteJ].setImg(newImg);
-                    gridItems[i][j].setImg("");
+                const neighbourItem = findGridItem(absoluteI, absoluteJ);
+                if (neighbourItem.isEmpty) {
+                    gameIsGoing = true;
+                    const centerItem = findGridItem(i, j);
+                    neighbourItem.setCoords(i, j);
+                    centerItem.setCoords(absoluteI, absoluteJ);
                 }
             }
         }
@@ -88,11 +112,22 @@ function mousePressed() {
 }
 
 function shuffleImages() {
-    const availableIndeces = shuffle(Array.from({ length: imageParts.length }, (_, i) => i));
+    const possiblePoints = [];
     for (let i = 0; i < dimension; i++) {
         for (let j = 0; j < dimension; j++) {
-            if(i === 3 && j === 3) continue;
-            gridItems[i][j].img = imageParts[availableIndeces.shift()]
+            if(gridItems[i][j].isEmpty) continue;
+            possiblePoints.push([i, j]);
         }
     }
+    const points = shuffle(possiblePoints);
+    for (let i = 0; i < dimension; i++) {
+        for (let j = 0; j < dimension; j++) {
+            if (gridItems[i][j].isEmpty) continue;
+            const newCoords = points.shift();
+            gridItems[i][j].setCoords(newCoords[0], newCoords[1]);
+        }
+    }
+
+    const button = document.querySelector('.button');
+    button.setAttribute('disabled', true)
 }
