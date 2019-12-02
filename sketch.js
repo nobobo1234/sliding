@@ -57,12 +57,6 @@ function draw() {
     }
 
     if(gameIsGoing) {
-        if (frameCount % 60 === 0) {
-            const timer = document.querySelector('.seconds');
-            seconds += 1;
-            timer.innerHTML = seconds;
-        }
-
         const won = checkIfWon();
         if (won) {
             const button = document.querySelector('.button');
@@ -101,6 +95,7 @@ function mousePressed() {
             if (absoluteI >= 0 && absoluteI < dimension && absoluteJ >= 0 && absoluteJ < dimension) {
                 const neighbourItem = findGridItem(absoluteI, absoluteJ);
                 if (neighbourItem.isEmpty) {
+                    moves++;
                     gameIsGoing = true;
                     const centerItem = findGridItem(i, j);
                     neighbourItem.setCoords(i, j);
@@ -125,6 +120,7 @@ function shuffleImages() {
             if (gridItems[i][j].isEmpty) continue;
             const newCoords = points.shift();
             gridItems[i][j].setCoords(newCoords[0], newCoords[1]);
+            gridItems[i][j].index = newCoords[1] * dimension + newCoords[0];
         }
     }
 
