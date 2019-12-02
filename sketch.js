@@ -1,5 +1,5 @@
 const gridItems = [];
-let seconds = 0;
+let moves = 0;
 let gameIsGoing = false;
 let img;
 const dimension = 4;
@@ -95,7 +95,9 @@ function mousePressed() {
             if (absoluteI >= 0 && absoluteI < dimension && absoluteJ >= 0 && absoluteJ < dimension) {
                 const neighbourItem = findGridItem(absoluteI, absoluteJ);
                 if (neighbourItem.isEmpty) {
-                    moves++;
+                    const movesHTML = document.querySelector('.moves-passed');
+                    movesHTML.innerHTML = Number(movesHTML.innerHTML)+1;
+
                     gameIsGoing = true;
                     const centerItem = findGridItem(i, j);
                     neighbourItem.setCoords(i, j);
@@ -125,5 +127,7 @@ function shuffleImages() {
     }
 
     const button = document.querySelector('.button');
+    const movesHTML = document.querySelector('.moves-passed');
+    movesHTML.innerHTML = 0;
     button.setAttribute('disabled', true)
 }
