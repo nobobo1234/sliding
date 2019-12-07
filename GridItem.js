@@ -4,6 +4,7 @@ class GridItem {
         this.j = j;
         this.length = length;
         this.img = img;
+        this.index = 4 * i + j;
         this.isEmpty = isEmpty;
     }
 
@@ -12,9 +13,14 @@ class GridItem {
         fill(255);
         stroke(0);
         strokeWeight(0.3);
-        rect(this.i*this.length+1, this.j*this.length+1, this.length-2, this.length-2);
+        rect(
+            this.i * this.length + 1,
+            this.j * this.length + 1,
+            this.length - 2,
+            this.length - 2
+        );
         if (!this.isEmpty) {
-            image(this.img, this.i*this.length+1, this.j*this.length+1);
+            image(this.img, this.i * this.length + 1, this.j * this.length + 1);
         }
         pop();
     }

@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>sliding_puzzle</title>
+	<title>Sliding Puzzle</title>
 
 	<script src="libraries/p5.js"></script>
 	<script src="libraries/p5.dom.js"></script>
@@ -16,8 +16,31 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
-    <div class="container"></div>
-    <button class="button" onclick="shuffleImages()">Shuffle</button>
+    <h1 class="heading--1">Sliding Puzzle</h1>
+    <div class="container">
+        <div class="example-div">
+            <div class="example-text">Example:</div>
+            <img class="example-img" src="logo.png" />
+        </div>
+    </div>
     <p class="moves-text"><span class="moves-passed">0</span> moves done since start</p>
+    <div class="buttons">
+        <button class="button button--shuffle" onclick="shuffleImages()">Shuffle</button>
+        <button class="button button--reset" onclick="reset()">Reset</button>
+    </div>
+    <div class="instruction-container">
+        <h2 class="heading--2">Instructions</h2>
+        <ol class="instruction-list">
+            <li>Press the shuffle button. You can't move pieces until you pressed the shuffle button.</li>
+            <li>Shuffle the pieces around by clicking on them.</li>
+            <li>Recreate the original image to win.</li>
+        </ol>
+    </div>
+    <div class="modal-background" hidden>
+        <div class="modal-content">
+            <h1 class="heading--1">You won!</h1>
+            <p class="modal-text">You won the 4x4 sliding puzzle in a total of <span class="moves-won">0</span> moves. Click on the black background to close this message.</p>
+        </div>
+    </div>
 </body>
 </html>

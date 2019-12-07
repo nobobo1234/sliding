@@ -8,22 +8,33 @@
     background-color: #103A5D;
 }
 
-body {
+html {
     font-size: 62.5%;
     box-sizing: border-box;
+}
+
+body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
 }
 
+body > *:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
 .button {
     order: 1;
-    padding: .5rem 1rem;
+    padding: 1rem 2rem;
     border: 1px solid #000;
     text-align: center;
     border-radius: .5rem;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+}
+
+.button:not(:last-child) {
+    margin-right: 1rem;
 }
 
 .button:hover {
@@ -34,14 +45,72 @@ body {
     cursor: not-allowed;
 }
 
-.container {
-    margin-bottom: .5rem;
-}
-
-.moves-passed {
-    font-size: 1.2rem;
+.moves-passed, .moves-won {
+    font-size: 2rem;
 }
 
 .moves-text {
-    margin: .5rem 0;
+    font-size: 1.4rem;
+}
+
+.container {
+    display: flex;
+}
+
+.example-div {
+    order: 1;
+    margin-left: 2rem;
+}
+
+.example-text {
+    font-size: 1.6rem;
+}
+
+.example-img {
+    display: block;
+    width: 30rem;
+    border: 1px solid #000;
+    height: 30rem;
+    padding: 1rem;
+}
+
+.instruction-list {
+    font-size: 1.4rem;
+    list-style-position: inside;
+}
+
+.heading--1 {
+    font-size: 2.3rem;
+}
+
+.heading--2 {
+    font-size: 1.8rem;
+}
+
+.modal-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+}
+
+.modal-text {
+    font-size: 1.4rem;
+    text-align: center;
 }
